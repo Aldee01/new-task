@@ -1,0 +1,24 @@
+yaml
+version: '3'
+services:
+  fusionauth:
+    image: fusionauth/fusionauth-app
+    ports:
+      - 9011:9011
+    environment:
+      - DATABASE_URL=jdbc:postgresql:////nightlyfromtrial2.clbqcmdga9ha.us-west-2.rds.amazonaws.com/fusionauth-db
+      - FUSIONAUTH_APP_RUNTIME_MODE=production
+      - FUSIONAUTH_APP_SILENT_MODE=false
+      - DATABASE_ROOT_USER=postgres
+      - DATABASE_ROOT_PASSWORD=fCeB43C3sAB7Jdk8
+      - DATABASE_USER=postgres
+      - DATABASE_PASSWORD=fCeB43C3sAB7Jdk8
+    depends_on:
+      - fusionauth-db
+  fusionauth-db:
+    image: postgres:12
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=mysecretpassword
+      - POSTGRES_DB=fusionauth
+
